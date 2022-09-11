@@ -1,3 +1,5 @@
+const NUMBER_OF_WINS = 5;
+
 function getComputerChoice() {
     let choice = getRandomInteger(0, 2)
 
@@ -39,6 +41,8 @@ function getUserChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
+// The logic, that decides did the user win or lost and individual round
+
     if (playerSelection == computerSelection) {
         return "Tie game!";
     }
@@ -73,7 +77,8 @@ function game() {
     let message;
     let computerPoints = 0;
     let userPoints = 0;
-    while (computerPoints < 5 && userPoints < 5){
+
+    while (computerPoints < NUMBER_OF_WINS && userPoints < NUMBER_OF_WINS){
         userChoice = getUserChoice();
         computerChoice = getComputerChoice();
 
@@ -91,6 +96,7 @@ function game() {
         }
     }
 
+    // Win checking
     if (computerPoints == 5) {
         console.log("Computer won...")
     }
