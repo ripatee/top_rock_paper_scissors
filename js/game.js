@@ -16,7 +16,29 @@ function getRandomInteger (min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
-console.log(getComputerChoice());
+function getUserChoice () {
+    let choice;
+    let correctInput = false;
+
+    while(!correctInput) {
+        choice = prompt("Choose rock, paper or scissors").toLowerCase();
+
+        if(choice == "rock") {
+            correctInput = true;
+            return choice;
+        }
+        else if (choice == "paper") {
+            correctInput = true;
+            return choice;
+        }
+        else if (choice == "scissors"){
+            correctInput = true;
+            return choice;
+        }
+    }
+}
+
+
 
 /*
 Pseudo coding
