@@ -1,5 +1,9 @@
 const NUMBER_OF_WINS = 5;
 
+let computerPoints = 0;
+let userPoints = 0;
+
+
 function getComputerChoice() {
     let choice = getRandomInteger(0, 2)
 
@@ -18,26 +22,9 @@ function getRandomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
-function getUserChoice() {
-    let choice;
-    let correctInput = false;
-
-    while(!correctInput) {
-        choice = prompt("Choose rock, paper or scissors").toLowerCase();
-
-        if(choice == "rock") {
-            correctInput = true;
-            return choice;
-        }
-        else if (choice == "paper") {
-            correctInput = true;
-            return choice;
-        }
-        else if (choice == "scissors"){
-            correctInput = true;
-            return choice;
-        }
-    }
+function cleanPoints() {
+    computerPoints = 0;
+    userPoints = 0;
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -71,55 +58,42 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    let userChoice;
+const rockBtn = document.querySelector('#rock');
+const paperBtn = document.querySelector('#paper');
+const scissorsBtn = document.querySelector('#scissors');
+
+rockBtn.addEventListener('click', game("rock"));
+paperBtn.addEventListener('click', game("paper"));
+scissorsBtn.addEventListener('click', game("scissors"));
+
+
+function game(userChoice) {
     let computerChoice;
     let message;
-    let computerPoints = 0;
-    let userPoints = 0;
 
-    while (computerPoints < NUMBER_OF_WINS && userPoints < NUMBER_OF_WINS){
-        userChoice = getUserChoice();
-        computerChoice = getComputerChoice();
+    computerChoice = getComputerChoice();
 
-        message = playRound(userChoice, computerChoice);
-        console.log(message);
+    message = playRound(userChoice, computerChoice);
+    console.log(message);
 
-        if (message == "Tie game!"){
-
-        }
-        else if (message.slice(0, 8) == "You win!") {
-            userPoints++;
-        }
-        else {
-            computerPoints++;
-        }
+    if (message == "Tie game!"){
+        // Do nothing
+    }
+    else if (message.slice(0, 8) == "You win!") {
+        userPoints++;
+    }
+    else {
+        computerPoints++;
     }
 
     // Win checking
     if (computerPoints == 5) {
         console.log("Computer won...")
+        cleanPoints();
     }
-    else {
+    else if (userPoints == 5) {
         console.log("You won!");
+        cleanPoints();
     }
 }
 
-game();
-
-/*
-Pseudo coding
-
-While: Computer wins < 5 or Human wins <5
-    Ask user input: Rock, paper, scissors
-        Check for legal input
-        Check capitalization
-    Generate computers choice: Rock, paper or scissors
-    Compare choices
-    IF computer won:
-        add win to computer
-    IF human won:
-        add win to human
-    Show results
-
-    */
