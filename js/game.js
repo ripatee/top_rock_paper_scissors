@@ -52,6 +52,7 @@ function playRound(playerSelection, computerSelection) {
 const rockBtn = document.querySelector('#rock');
 const paperBtn = document.querySelector('#paper');
 const scissorsBtn = document.querySelector('#scissors');
+const result = document.querySelector('.result');
 
 rockBtn.addEventListener('click', () => game("rock"));
 paperBtn.addEventListener('click', () => game("paper"));
@@ -65,7 +66,7 @@ function game(userChoice) {
     computerChoice = getComputerChoice();
 
     message = playRound(userChoice, computerChoice);
-    console.log(message);
+    result.textContent = message;
 
     if (message == "Tie game!"){
         // Do nothing
@@ -79,11 +80,11 @@ function game(userChoice) {
 
     // Win checking
     if (computerPoints == NUMBER_OF_WINS) {
-        console.log("Computer won...")
+        result.textContent = "Computer was best of five...";
         cleanPoints();
     }
     else if (userPoints == NUMBER_OF_WINS) {
-        console.log("You won!");
+        result.textContent = "You was best of five!";
         cleanPoints();
     }
 }
