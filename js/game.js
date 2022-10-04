@@ -5,17 +5,8 @@ let userPoints = 0;
 
 
 function getComputerChoice() {
-    let choice = getRandomInteger(0, 2)
-
-    if (choice == 0) {
-        return "rock";
-    }
-    else if (choice == 1) {
-        return "paper";
-    }
-    else {
-        return "scissors";
-    }
+    const choices = ["rock", "paper", "scissors"];
+    return choices[getRandomInteger(0, 2)];
 }
 
 function getRandomInteger(min, max) {
