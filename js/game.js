@@ -29,7 +29,7 @@ function playRound(playerSelection, computerSelection) {
             return "You win! Scissors beats paper";
         }
         else {
-            return "You lost. Rock defeats scissors";
+            return "You lost. Scissors loses to rock";
         }
     }
     else if (playerSelection == "paper") {
@@ -37,7 +37,7 @@ function playRound(playerSelection, computerSelection) {
             return "You win! Paper beats rock";
         }
         else {
-            return "You lost. Scissors beat paper"
+            return "You lost. Paper loses to scissors"
         }
     }
     else if (playerSelection == "rock") {
@@ -45,7 +45,7 @@ function playRound(playerSelection, computerSelection) {
             return "You win! Rock beats scissors"
         }
         else
-            return "You lost. Paper beats rock"
+            return "You lost. Rock loses to paper"
     }
 }
 
@@ -53,9 +53,9 @@ const rockBtn = document.querySelector('#rock');
 const paperBtn = document.querySelector('#paper');
 const scissorsBtn = document.querySelector('#scissors');
 
-rockBtn.addEventListener('click', game("rock"));
-paperBtn.addEventListener('click', game("paper"));
-scissorsBtn.addEventListener('click', game("scissors"));
+rockBtn.addEventListener('click', () => game("rock"));
+paperBtn.addEventListener('click', () => game("paper"));
+scissorsBtn.addEventListener('click', () => game("scissors"));
 
 
 function game(userChoice) {
@@ -78,11 +78,11 @@ function game(userChoice) {
     }
 
     // Win checking
-    if (computerPoints == 5) {
+    if (computerPoints == NUMBER_OF_WINS) {
         console.log("Computer won...")
         cleanPoints();
     }
-    else if (userPoints == 5) {
+    else if (userPoints == NUMBER_OF_WINS) {
         console.log("You won!");
         cleanPoints();
     }
